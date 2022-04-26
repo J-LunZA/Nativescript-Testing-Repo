@@ -4,6 +4,7 @@
       :items="test"
       multipleSelection="false"
       selectionBehavior="Press"
+      height="100%"
     >
       <v-template>
         <GridLayout
