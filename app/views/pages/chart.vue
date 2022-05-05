@@ -57,36 +57,49 @@ export default Vue.extend({
 
   data() {
     return {
-      toggelChart: true,
+      toggelChart: false,
       range: 100,
-      count: 40
+      count: 400
     };
   },
 
   methods: {
     onLineLoaded(args: EventData) {
       const chart = <LineChart>args.object;
-      // const chart = this.$refs.chart['lineChart'] as LineChart;
 
-      chart.backgroundColor = 'white';
-      // enable touch gestures
+      // Gestures
       chart.setTouchEnabled(true);
-
-      chart.setDrawGridBackground(false);
-
-      // enable scaling and dragging
-      chart.setDragEnabled(true);
-      chart.setScaleEnabled(true);
-
-      // force pinch zoom along both axis
       chart.setPinchZoom(true);
+      chart.setDragEnabled(true);
+      chart.setAutoScaleMinMaxEnabled(true);
+      chart.setScaleEnabled(true);
+      chart.setDoubleTapToZoomEnabled(true);
+      chart.setDragDecelerationEnabled(true);
 
-      // disable dual axis (only use LEFT axis)
-      chart.getAxisRight().setEnabled(false);
+      // // Highlight
+      chart.setHighlightPerDragEnabled(false);
+      chart.setHighlightPerTapEnabled(true);
+
+      chart.getLegend().setEnabled(false);
+      chart.setDrawGridBackground(false);
+      chart.setVisibleXRangeMaximum(30);
+
+      // X Axis
+      const xAxis = chart.getXAxis();
+      xAxis.setPosition(XAxisPosition.BOTTOM);
+      xAxis.setDrawGridLines(false);
+      xAxis.setTextColor('white');
+
+      // Left Axis
+      const leftAxis = chart.getAxisLeft();
+      leftAxis.setEnabled(true);
+      leftAxis.setLabelCount(7, false);
+      leftAxis.setDrawGridLines(false);
+      leftAxis.setDrawAxisLine(false);
 
       const myData = new Array(500).fill(0).map((v, i) => ({
-          index: i,
-          value: Math.random() * 1,
+        index: i,
+        value: Math.random() * 1,
       }));
 
       const sets = [];
@@ -99,6 +112,8 @@ export default Vue.extend({
 
       // Set data
       chart.setData(ld);
+      chart.setDragEnabled(true);
+
     },
 
     onCandleLoaded(args: EventData) {
@@ -107,16 +122,7 @@ export default Vue.extend({
       chart.drawFrameRate = false;
       chart.hardwareAccelerated = true;
 
-      // Gestures
-      chart.setTouchEnabled(true);
-      chart.setPinchZoom(true);
-      chart.setDragEnabled(true);
-      chart.setAutoScaleMinMaxEnabled(true);
-      chart.setScaleEnabled(true);
-      chart.setDoubleTapToZoomEnabled(true);
-      chart.setDragDecelerationEnabled(true);
-
-      // Highlight
+            // Highlight
       chart.setHighlightPerDragEnabled(false);
       chart.setHighlightPerTapEnabled(true);
 
@@ -128,6 +134,8 @@ export default Vue.extend({
       const xAxis = chart.getXAxis();
       xAxis.setPosition(XAxisPosition.BOTTOM);
       xAxis.setDrawGridLines(false);
+      // xAxis.setTextColor(this.isDarkTheme ? 'white' : 'white');
+      xAxis.setTextColor('red');
 
       // Left Axis
       const leftAxis = chart.getAxisLeft();
@@ -135,6 +143,11 @@ export default Vue.extend({
       leftAxis.setLabelCount(7, false);
       leftAxis.setDrawGridLines(false);
       leftAxis.setDrawAxisLine(false);
+      /**
+       * For reasons unknown, when setting the set setAxisDependency to the right axis, the bottom the x axis values dont appear
+       * quick work around is to enable left axis, set setAxisDependency to left and make the labels invisible then all works as expected
+       */
+      leftAxis.setTextColor('transparent');
 
       // Right Axis
       const rightAxis = chart.getAxisRight();
@@ -142,7 +155,7 @@ export default Vue.extend({
       rightAxis.setLabelCount(7, false);
       rightAxis.setDrawGridLines(false);
       rightAxis.setDrawAxisLine(false);
-
+      rightAxis.setTextColor('red');
       // SET CHART DATA
       chart.resetTracking();
 
@@ -169,7 +182,7 @@ export default Vue.extend({
       }
       const set1 = new CandleDataSet(values, 'Data Set');
       set1.setDrawIcons(false);
-      set1.setAxisDependency(AxisDependency.LEFT);
+      set1.setAxisDependency(AxisDependency.RIGHT);
       set1.setShadowColor('darkgray');
       set1.setShadowWidth(0.7);
       set1.setDecreasingColor('red');
@@ -182,6 +195,17 @@ export default Vue.extend({
 
       chart.setData(data);
       chart.invalidate();
+
+      // Intentionally set gestures after chart data has been set
+      // Gestures
+      chart.setTouchEnabled(true);
+      chart.setPinchZoom(true);
+      chart.setDragEnabled(true);
+      chart.setAutoScaleMinMaxEnabled(true);
+      chart.setScaleEnabled(true);
+      chart.setDoubleTapToZoomEnabled(true);
+      chart.setDragDecelerationEnabled(true);
+
     }
   }
 });

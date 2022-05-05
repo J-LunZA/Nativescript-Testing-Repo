@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@nativescript-community/ui-canvas": "^4.4.0",
-    "@nativescript-community/ui-chart": "^1.2.17",
+    "@nativescript-community/ui-chart": "^1.2.18",
     "@nativescript-community/ui-material-tabs": "^7.0.3",
     "@nativescript/core": "~8.2.2",
     "@nativescript/theme": "~3.0.2",
