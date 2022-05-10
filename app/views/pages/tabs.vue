@@ -43,8 +43,13 @@
 
       <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
       <MDTabContentItem>
-        <GridLayout>
+        <GridLayout rows="auto, auto">
           <Label text="Home Page" class="h2 text-center"></Label>
+          <Button
+            row="1"
+            text="Go to Rad List View"
+            @tap="$navigateTo(RadListView)"
+          />
         </GridLayout>
       </MDTabContentItem>
       <MDTabContentItem>
@@ -66,6 +71,8 @@
 
   import ListView from '~/views/components/listview.vue';
 
+  import RadListView from '~/views/pages/listview.vue';
+
   export default Vue.extend({
 
     components: {
@@ -74,6 +81,7 @@
 
     data() {
       return {
+        RadListView: RadListView,
       };
     }
   });

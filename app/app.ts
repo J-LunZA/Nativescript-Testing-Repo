@@ -1,6 +1,7 @@
 import Vue from 'nativescript-vue'
 
 import Landing from './views/pages/landing.vue'
+import Tabs from './views/pages/tabs.vue';
 
 import RadListView from 'nativescript-ui-listview/vue';
 import RadAutoComplete from 'nativescript-ui-autocomplete/vue';
