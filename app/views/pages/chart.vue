@@ -2,6 +2,12 @@
   <Page>
     <ActionBar>
       <Label text="Candle Chart"/>
+
+      <NavigationButton
+        class="far t-10"
+        icon.decode="font://&#xf191;"
+        @tap="$navigateBack()"
+      />
     </ActionBar>
 
     <GridLayout rows="auto, *" columns="*, *">
@@ -205,6 +211,9 @@ export default Vue.extend({
       chart.setScaleEnabled(true);
       chart.setDoubleTapToZoomEnabled(true);
       chart.setDragDecelerationEnabled(true);
+
+      chart.setData(data);
+
 
     }
   }

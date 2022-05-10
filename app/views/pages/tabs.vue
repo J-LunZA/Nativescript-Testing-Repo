@@ -2,6 +2,12 @@
   <Page>
     <ActionBar>
       <Label text="tabs"/>
+
+      <NavigationButton
+        class="far t-10"
+        icon.decode="font://&#xf191;"
+        @tap="$navigateBack()"
+      />
     </ActionBar>
 
     <MDTabs

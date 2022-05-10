@@ -2,6 +2,12 @@
   <Page>
     <ActionBar>
       <Label text="AutoComplete Example"/>
+
+      <NavigationButton
+        class="far t-10"
+        icon.decode="font://&#xf191;"
+        @tap="$navigateBack()"
+      />
     </ActionBar>
 
     <StackLayout>

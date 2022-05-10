@@ -41,7 +41,7 @@ export const countries = [
 
 export const getCountry = (i: number) => {
   const country = countries[i];
-  return new TokenModel(country, null);
+  return new TokenModel(country, '');
 };
 
 export const getCountryWithImage = (i: number) => {

@@ -1,9 +1,6 @@
 import Vue from 'nativescript-vue'
 
-import Chart from './views/pages/chart.vue'
-import Home from './views/pages/listview.vue'
-import Tabs from './views/pages/tabs.vue';
-import AutoComplete from './views/pages/autocomplete.vue';
+import Landing from './views/pages/landing.vue'
 
 import RadListView from 'nativescript-ui-listview/vue';
 import RadAutoComplete from 'nativescript-ui-autocomplete/vue';
@@ -24,5 +21,5 @@ declare let __DEV__: boolean;
 Vue.config.silent = !__DEV__
 
 new Vue({
-  render: (h) => h('frame', [h(Chart)]),
+  render: (h) => h('frame', [h(Landing)]),
 }).$start()
