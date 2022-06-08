@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "debug:android": "npm i && ./node_modules/.bin/ns debug android --no-hmr"
+    "debug:android": "npm i && ./node_modules/.bin/ns debug android --no-hmr",
+    "debug:ios": "npm i && ./node_modules/.bin/ns debug ios --no-hmr"
   },
   "dependencies": {
     "@nativescript-community/ui-canvas": "^4.4.0",
